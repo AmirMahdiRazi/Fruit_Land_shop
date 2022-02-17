@@ -7,7 +7,6 @@ from PWD import MyPWD
 from PBF import MyPBF
 from PD import MyPD
 from PCDL import MyPCDL
-from PME import MyPME
 from wr import write_file
 from share import Txt,TI2B,reset
 
@@ -45,8 +44,7 @@ class SOrder(Screen):
         th_PBF.content= MyPBF()
 
         # # Create Page ME
-        th_PME = TabbedPanelHeader(text=Txt("موارد دیگر"),font_name="font/arial",font_size="35")
-        th_PME.content= MyPME()
+        
 
 
         tb_panel.add_widget(th_PCDP)
@@ -54,7 +52,7 @@ class SOrder(Screen):
         tb_panel.add_widget(th_PWD)
         tb_panel.add_widget(th_PCDL)
         tb_panel.add_widget(th_PBF)
-        tb_panel.add_widget(th_PME)
+        
             
         _GL= GridLayout(cols=1)
         _GL.add_widget(tb_panel)
