@@ -1,13 +1,13 @@
 #Screen Order
 
 
-from All_Module import App,TabbedPanel,TabbedPanelHeader,GridLayout,Window,Screen,ScreenManager
+from All_Module import App,TabbedPanel,TabbedPanelHeader,GridLayout,Window,Screen,Button,Label
 from PCDP import MyPCDP
 from PWD import MyPWD
 from PBF import MyPBF
 from PD import MyPD
 from PCDL import MyPCDL
-from wr import write_file
+
 from share import Txt,TI2B,reset
 
 reset()
@@ -42,6 +42,7 @@ class SOrder(Screen):
         # # Create Page BF
         th_PBF = TabbedPanelHeader(text=Txt("صبحانه"),font_name="font/arial",font_size="35")
         th_PBF.content= MyPBF()
+        
 
         # # Create Page ME
         
@@ -57,19 +58,30 @@ class SOrder(Screen):
         _GL= GridLayout(cols=1)
         _GL.add_widget(tb_panel)
         _GL.add_widget(TI2B(size_hint=(1,.3)))
+
+        # Create Button For Back On menu
+        _GLB=GridLayout(cols=3,size_hint=(1,.09))
+        _GLB.add_widget(Label())
+        _GLB.add_widget(Button(text=Txt("منو"),font_name="font/arial",font_size="35",\
+            size_hint =(.5, .25),background_color='00FFD8',on_release=self.ChangePage))
+        _GLB.add_widget(Label())
+        # End
+
+
+        _GL.add_widget(_GLB)
         Window.maximize()
         self.add_widget(_GL)
         
 
-    def ChangePage(self):
+    def ChangePage(self, instance):
         self.manager.transition.direction = 'right'
-        self.manager.current = 'Country'
+        self.manager.current = 'SMenu'
 #         return GL
 
 
 # TabbedPanelApp().run()
 
-class myapp(App):
-    def build(self):
-        return SOrder()
-myapp().run()
+# class myapp(App):
+#     def build(self):
+#         return SOrder()
+# myapp().run()

@@ -4,8 +4,6 @@ from numpy import spacing
 from All_Module import *
 from wr import *
 from functools import partial
-
-
 import kivy.app
 import kivy.uix.label
 import kivy.uix.button
@@ -48,19 +46,34 @@ class SOther(Screen,Image):
     
     IT_Cost=IT('مبلغ سفارش را وارد کنید')
 
-    def __init__(self):
-        super(SOther,self).__init__()
+    def __init__(self,**kwargs):
+        super(SOther,self).__init__(**kwargs)
         self.GL = GridLayout(cols=1)
         self.cols=1
         self.source ='images/BGI/CD.jpg'
-        self.GL.padding=50
-        self.GL.add_widget(Label(size_hint=(1,.5)))
+        self.GL.padding=[50,15,50,15]
+        self.GL.add_widget(Label(size_hint=(1,.15)))
         self.GL.add_widget(__class__.IT_Order)
-        self.GL.add_widget(Label(size_hint=(1,.5)))
+        self.GL.add_widget(Label(size_hint=(1,.15)))
         self.GL.add_widget(__class__.IT_Cost)
-        self.GL.add_widget(Label(size_hint=(1,.5)))
+        self.GL.add_widget(Label(size_hint=(1,.15)))
         self.GL.add_widget(B2())
+        self.GL.add_widget(Label(size_hint=(1,.15)))
+
+        _GLB=GridLayout(cols=3,size_hint=(1,.25))
+        _GLB.add_widget(Label())
+        _GLB.add_widget(Button(text=Txt("منو"),font_name="font/arial",font_size="35",\
+            size_hint =(.5, .005),background_color='00FFD8',on_release=self.ChangePage))
+        _GLB.add_widget(Label())
+
+        self.GL.add_widget(_GLB)
+    
         self.add_widget(self.GL)
+
+
+    def ChangePage(self, instance):
+        self.manager.transition.direction = 'right'
+        self.manager.current = 'SMenu'
         
 
 
@@ -70,12 +83,13 @@ class B2(GridLayout):
     def __init__(self):
         super(B2, self).__init__()
         self.cols=1
-        # self.spacing=[25,0]
-        self.padding=[500,0,500,10]
+        
         self.add_widget(Button(text=Txt("تایید"),font_name="font/KamranB",font_size="70",background_color="0FFC04b0",on_press=self.register))
-        self.add_widget(Label(size_hint=(1,.4)))
+        self.add_widget(Label(size_hint=(1,.2)))
         self.add_widget(Button(text=Txt("لغو"),font_name="font/KamranB",background_color="FC0404b0",font_size="70",on_press=self.reset))
         
+        
+
 
     #Write on File and Reset IT and Variable
     def register(self,instance):
@@ -94,11 +108,11 @@ class B2(GridLayout):
 
     
 
-class Myapp(App):
-    def build(self):
-        Window.maximize()
-        return SOther()
+# class Myapp(App):
+#     def build(self):
+#         Window.maximize()
+#         return SOther()
         
 
-Myapp().run()
+# Myapp().run()
 

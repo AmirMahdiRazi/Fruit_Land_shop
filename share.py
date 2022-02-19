@@ -1,4 +1,4 @@
-from All_Module import GridLayout,TextInput,Button
+from All_Module import GridLayout,TextInput,Button,Label
 from wr import write_file
 import arabic_reshaper
 import bidi.algorithm
@@ -98,6 +98,7 @@ class TI2B(GridLayout):
         TI2B.IT_Cost.text = f'{cost}' 
 
 
+        
 
 
 
